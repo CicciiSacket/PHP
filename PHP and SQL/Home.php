@@ -7,6 +7,10 @@ $_SESSION['utente'];
 $_SESSION['userID']; 
 createAccess($mysqli,$_SESSION['userID']);//crea l'accesso al login
 
+if (!$_SESSION['userID']) {
+    header("Location: index.php");
+}
+
 ?>
 <!DOCTYPE html>
 <html lang="en">
@@ -38,6 +42,7 @@ createAccess($mysqli,$_SESSION['userID']);//crea l'accesso al login
     <div> 
         <form action="" method="post">
             <input type="submit" value="Access Page" name="acp">
+            <input type="submit" value="Product Page" name="PP">
             <input type="submit" value="LOGOUT" name="esci">
         </form>
         <?php if ($_POST['esci']) {
@@ -46,6 +51,10 @@ createAccess($mysqli,$_SESSION['userID']);//crea l'accesso al login
         <?php if ($_POST['acp']) {
             header("Location: Access.php"); 
         }  ?>
+        <?php if ($_POST['PP']) {
+            header("Location: Products.php"); 
+        }  ?>
+
     </div>
    
 </body>

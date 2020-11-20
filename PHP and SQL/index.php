@@ -11,6 +11,12 @@
 
 <?php
 require_once 'ManageDB.php';
+session_start();
+$_SESSION['userID']; 
+if ($_SESSION['userID']) {
+    header("Location: Home.php");
+}
+
 
 $mysqli = connectDB('localhost','root','root');
 useDB($mysqli,'EsercizioComplicato');
