@@ -103,7 +103,7 @@ function editPerson($mysqli,$id_users,$password){//la cosa che qualcuno modifica
 
 }
 
-function createAccess($mysqli,$id_user){//l'id user è quello che ha effettuato il login
+function createAccess($mysqli,$id_user){
 
     $query_string = "INSERT INTO Access (id_user) VALUES ($id_user)";
     $res = $mysqli->query($query_string);
@@ -188,10 +188,19 @@ function ListAccessForSingleID($mysqli,$id_user){
 }
 
 function totalProducts($mysqli){
-    $query_string = "SELECT * FROM Favourites";
+    $query_string = "SELECT * FROM Products";
     $res = $mysqli->query($query_string);
     while($row = mysqli_fetch_assoc($res)) {
-        echo "<li>". "id: " . $row["id"]. " - id_products: " . $row["id_products"] . "<br>" . "</li>";
+        echo "<li>". "id: " . $row["id_products"]. " - name: " . $row["name_products"] . " - price: " . $row["price"] ."<br>" . "</li>";
+    }
+}
+
+function mailExist($mysqli,$mail){
+    $query_string = "SELECT email FROM Users WHERE email='$mail'";
+    $res = $mysqli->query($query_string);
+    if ($res->num_rows){
+        $error = "*questa Mail è già registrata";
+        $errorMail = $_POST['mail'];
     }
 }
 ?> 
