@@ -6,7 +6,6 @@
     <title>Operazioni</title>
 </head>
 <body style="background-color: #E0FFFF;">
-
 <?php
   $First = "  ";
   $Second = "  ";
