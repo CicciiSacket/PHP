@@ -59,4 +59,5 @@ function Exist($x,$y,$z){
     }
     return $result;
 }
+//diocan
 ?>
