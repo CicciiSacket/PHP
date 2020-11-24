@@ -1,5 +1,6 @@
 <?php //connessione al DB 
 $mysqli = new mysqli ('localhost', 'root', 'root', 'corso13'); //opzionali i parametri numero porta e socket
+
 if ($mysqli-> connect_error){
   die('errore di connessione (codice errore'. $mysqli->connect_errno . ') messaggio errore' . $mysqli->connect_error); //die = forza l'interruzione dell'esecuzione 
 }else{
