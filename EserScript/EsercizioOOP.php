@@ -1,8 +1,8 @@
 <?php
 class Calcolatrice{
     public $Operazioni;
-    // public $sum = array();
-    // public $diff = array();
+    public $sum = array();
+    public $diff = array();
 
     function __construct($Operazioni) {
         $this->Operazioni = array(); 
@@ -11,14 +11,12 @@ class Calcolatrice{
         $result = $x + $y;
         $op = new Operazione('somma',$x,$y,$result);
         array_push($this->Operazioni,$op);
-        // array_push($this->sum,'+1');
         return $result;
     }
     function difference($x,$y){
         $result = $x - $y;
         $op = new Operazione('sottrazione',$x,$y,$result);
         array_push($this->Operazioni,$op);
-        // array_push($this->diff,'+1');
         return $result;
     }
     function multiplication($x,$y){
@@ -41,19 +39,19 @@ class Calcolatrice{
     }
     function sqrtFun($x){
         $result = sqrt($x);
-        $op = new Operazione('radicequadrata',$x,0,$result);
+        $op = new Operazione('radicequadrata',$x,'',$result);
         array_push($this->Operazioni,$op);
         return $result;
     }
     function converter($x){
         $result = decbin($x);
-        $op = new Operazione('Dec-Bin',$x,0,$result);
+        $op = new Operazione('Dec-Bin',$x,'',$result);
         array_push($this->Operazioni,$op);
         return $result;
     }
     function UNconverter($x){
         $result = bindec($x);
-        $op = new Operazione('Bin-Dec',$x,0,$result);
+        $op = new Operazione('Bin-Dec',$x,'',$result);
         array_push($this->Operazioni,$op);
         return $result;
     }
@@ -84,31 +82,25 @@ $CalcolatriceProva->converter(1);
 $CalcolatriceProva->UNconverter(001);
 print_r($CalcolatriceProva->Operazioni);
 
-
-// $sum = 0;
-// $diff = 0;
-// $molt = 0;
-// for ($i=0; $i < count($CalcolatriceProva->Operazioni) ; $i++) { 
-//     if ($CalcolatriceProva->Operazioni[$i]->Opname === "somma"){
-//         $sum++;
-//     }
-//     if ($CalcolatriceProva->Operazioni[$i]->Opname === "sottrazione"){
-//         $diff++;
-//     }
-//     if ($CalcolatriceProva->Operazioni[$i]->Opname === "moltiplicazione"){
-//         $molt++;
-//     }
-//     if($sum > $diff && $sum > $molt){
-//        $res = 'ci sono più somme';
-//     }
-//     if($diff > $sum && $diff > $molt){
-//         $res = 'ci sono più diff';
-//     }
-// } 
-// echo $res . "\n";
-
-
-
-
+for ($i=0; $i < count($CalcolatriceProva->Operazioni) ; $i++) { 
+    if ($CalcolatriceProva->Operazioni[$i]->Opname == "somma"){
+        array_push($CalcolatriceProva->sum,$CalcolatriceProva->Operazioni[$i]);
+        $res = $CalcolatriceProva->sum;
+    }
+    else if($CalcolatriceProva->Operazioni[$i]->Opname == "sottrazione"){
+        array_push($CalcolatriceProva->diff,$CalcolatriceProva->Operazioni[$i]);
+        $res = $CalcolatriceProva->$diff;
+    }
+    if (count($CalcolatriceProva->sum) == count($CalcolatriceProva->diff)) {
+        $resp =  'uguali';
+    }
+    else if (count($CalcolatriceProva->sum) > count($CalcolatriceProva->diff)) {
+        $resp =  '+ somme';
+    }
+    else if (count($CalcolatriceProva->diff) > count($CalcolatriceProva->sum) ) {
+        $resp = '+ differenze';
+    }
+}
+echo $resp;   
 
 ?>
