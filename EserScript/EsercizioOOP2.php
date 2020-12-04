@@ -19,7 +19,7 @@ class triangle extends figure{
         $this->side3 = $side3; 
     }
     public function perimeter(){
-        return $this->side1 * triangle::$numberSide;
+        return $this->side1 + $this->side2 + $this->side3;
     }
     public function area(){
         $p = ($this->side1 + $this->side2 + $this->side3) / 2;
@@ -69,8 +69,6 @@ class rhombus extends quadrilateral{
         $this->side3 = $side3;
         $this->side4 = $side4;
         $this->radius = $radius;
-
-
     }
     public function perimeter(){
         return $this->side1 * quadrilateral::$numberSide;
@@ -103,7 +101,7 @@ class rectangle extends quadrilateral{
 
 
 
-$triangolo = new triangle(2,2,2);
+$triangolo = new triangle(3,3,1);
 echo "\n";
 echo "triangle\n";
 echo $triangolo->perimeter();
